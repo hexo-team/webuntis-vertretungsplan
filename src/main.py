@@ -17,7 +17,7 @@ import json
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Vertretungsplantool PyQt5 1")
+        MainWindow.setObjectName("Vertretungsplantool")
         MainWindow.resize(720, 420)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -162,11 +162,6 @@ class Ui_MainWindow(object):
 
 
         self.runbutton.clicked.connect(run)
-  
-
-
-from PyQt5 import QtWebKitWidgets
-
 
 if __name__ == "__main__":
     import sys
