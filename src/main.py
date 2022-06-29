@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'combibox.ui'
-#
 # Created by: PyQt5 UI code generator 5.15.7
 #
 # WARNING: Any manual changes made to this file will be lost when pyuic5 is
@@ -30,12 +28,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.inputpage)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.webEngineView = QtWebEngineWidgets.QWebEngineView(self.inputpage)
-        self.webEngineView.setMinimumSize(QtCore.QSize(0, 500))
+        #self.webEngineView.setMinimumSize(QtCore.QSize(0, 500))
         self.webEngineView.setUrl(QtCore.QUrl("https://outlook.office365.com/calendar/published/7e2057ed2d55471295c0b44a8ba2da08@caroos.onmicrosoft.com/f64d98858c1a4892b939356e91604aab14985167320374266920/calendar.html"))
         self.webEngineView.setObjectName("webEngineView")
         self.verticalLayout_3.addWidget(self.webEngineView)
         self.widget = QtWidgets.QWidget(self.inputpage)
         self.widget.setObjectName("widget")
+        self.widget.setMaximumSize(QtCore.QSize(16777215, 252))
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(self.widget)

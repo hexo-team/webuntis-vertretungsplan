@@ -1,12 +1,12 @@
 name: Pyinstaller App-Building
 
 # Controls when the workflow will run
-on:
+#on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 
   # Allows you to run this workflow manually from the Actions tab
@@ -20,7 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['windows-latest', 'ubuntu-latest', 'macos-latest',]
+        os: ['windows-latest', 'ubuntu-latest',]
+        #os: ['windows-latest', 'ubuntu-latest', 'macos-latest',]
 
     steps:
     - uses: actions/checkout@v2
@@ -29,10 +30,9 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r src/requirements.txt pyinstaller
-    - run: pyinstaller src/main.py --onefile
-    # Optionally verify that it works (provided that it does not need user interaction)
-    # - ./dist/your-code/your-code
+    - run: pyinstaller src/main.py --onefile --noconsole
+
     - uses: actions/upload-artifact@v3
       with:
-        name: application ${{ matrix.os }}
+        name: Vertretungsplan-Tool ${{ matrix.os }}
         path: dist/*
