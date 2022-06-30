@@ -284,10 +284,10 @@ class Ui_MainWindow(object):
                 else:
                     continue
 
-                c = [string.replace('<span class="substMonitorSubstElem">',"").replace("</span>", "") for string in x['data']]
+                c = [string.replace('<span class="substMonitorSubstElem">',"").replace("</span>", "").replace("Raum&auml;nderung", "Raumänderung") for string in x['data']]
 
                 c.insert(0, a)
-                print(dayindex, outputline, c)
+                #print(dayindex, outputline, c)
 
                 global column
                 column = 0
@@ -322,6 +322,7 @@ class Ui_MainWindow(object):
         def on_dayselect_changed():
             self.day_input.clear()
             self.day_input.insert(self.select_day.currentText())
+            #print("on_dayselect_changed(): self.day_input.insert(self.select_day.currentText())")
         self.select_day.currentIndexChanged.connect(on_dayselect_changed)
 
         def on_onlycancelselect_changed():
@@ -332,14 +333,19 @@ class Ui_MainWindow(object):
         def on_classselect_changed():
             self.class_input.clear()
             self.class_input.insert(self.select_class.currentText())
+            #print("on_classselect_changed(): self.class_input.insert(self.select_class.currentText())")
         self.select_class.currentIndexChanged.connect(on_classselect_changed)
 
         def on_dayinput_changed():
             self.select_day.setItemText(4, self.day_input.text())
+            self.select_day.setCurrentIndex(4)
+            #print("on_dayinput_changed(): self.select_day.setCurrentIndex(4)")
         self.day_input.editingFinished.connect(on_dayinput_changed)
 
         def on_classinput_changed():
             self.select_class.setItemText(0, self.class_input.text())
+            self.select_class.setCurrentIndex(0)
+            #print("on_classinput_changed(): self.select_class.setCurrentIndex(0)")
         self.class_input.editingFinished.connect(on_classinput_changed)
 
 
