@@ -1,4 +1,4 @@
-name: Pyinstaller App-Building
+name: Pyinstaller Executable-Building
 
 # Controls when the workflow will run
 on:
@@ -7,6 +7,7 @@ on:
 #    branches: [ "main" ]
 #  pull_request:
 #    branches: [ "main" ]
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,8 +27,10 @@ jobs:
         include:
         - os: ubuntu-latest
           bin: dist/main
+          exec-suffix: elf
         - os:  windows-latest
           bin: dist/main.exe
+          exec-suffix: exe
 
     steps:
       - uses: actions/checkout@v2
@@ -45,8 +48,8 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.uploadurl }}
           asset_path: ${{ matrix.bin }}
-          asset_name: Vertretungsplan-Tool-${{ matrix.os }}.zip
-          asset_content_type: application/zip
+          asset_name: Vertretungsplan-Tool-${{ github.os }}.${{ matrix.exec-suffix }}
+          asset_content_type: application/octet-stream
           
   create-release:
     runs-on: ubuntu-latest
@@ -58,10 +61,10 @@ jobs:
         uses: actions/create-release@v1
         id: create_release
         with:
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
           release_name: AutoRelease
-          tag_name:  vAutoBuild
+          tag_name:  ${{ github.run_id }}
           body_path: ReadMe.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
